@@ -1,0 +1,129 @@
+<div class="table__container">
+    <table [formGroup]="formGroup">
+        <thead>
+            <th *ngFor="let tableHead of tableHeads">{{tableHead | uppercase}}</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let person of people$ | async; let idx = index">
+
+                <!-- Id column -->
+                <td class="text-right">{{idx + 1}}</td>
+
+                <!-- FIO column -->
+                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['FIO'].invalid">
+
+                    <ng-container *ngIf="(editingPersonId === person.id); else showFIO">
+                        <input type="text"
+                               formControlName="FIO">
+                    </ng-container>
+
+                    <ng-template #showFIO>
+                        {{person.FIO}}
+                    </ng-template>
+                </td>
+
+                <!-- Gender column -->
+                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['gender'].invalid">
+
+                    <ng-container *ngIf="editingPersonId == person.id; else showGender">
+                        <label>
+                            <input type="radio"
+                                   formControlName="gender"
+                                   value="Мужчина">
+                            Мужчина
+                        </label>
+                        <br>
+                        <label>
+                            <input type="radio"
+                                   formControlName="gender"
+                                   value="Женщина">
+                            Женщина
+                        </label>
+                    </ng-container>
+
+                    <ng-template #showGender>
+                        {{person.gender}}
+                    </ng-template>
+                </td>
+
+                <!-- DateOfBirth column -->
+                <td class="text-center"
+                    [class.danger]="(editingPersonId === person.id) && formGroup.controls['dateOfBirth'].invalid">
+
+                    <ng-container *ngIf="editingPersonId == person.id; else showDateOfBirth">
+                        <input type="date"
+                               [value]="formGroup.controls['dateOfBirth'].value | date: 'yyyy-MM-dd'"
+                               formControlName="dateOfBirth">
+                    </ng-container>
+
+                    <ng-template #showDateOfBirth>
+                        {{person.dateOfBirth | date:'dd-MM-yyyy'}}
+                    </ng-template>
+                </td>
+
+                <!-- Married column -->
+                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['married'].invalid">
+
+                    <ng-container *ngIf="editingPersonId == person.id; else showMarried">
+                        <label>
+                            <input type="checkbox"
+                                   formControlName="married">
+                            В браке
+                        </label>
+                    </ng-container>
+
+                    <ng-template #showMarried>
+                        {{person.married ? 'Да': 'Нет'}}
+                    </ng-template>
+                </td>
+
+                <!-- University column -->
+                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['university'].invalid">
+
+                    <ng-container *ngIf="editingPersonId == person.id; else showUniversity">
+                        <select formControlName="university">
+                            <option *ngFor="let item of university$ | async"
+                                    [value]="item">{{item}}</option>
+                        </select>
+                    </ng-container>
+
+                    <ng-template #showUniversity>
+                        {{person.university}}
+                    </ng-template>
+                </td>
+
+                <!-- PhoneNumber column -->
+                <td class="text-right"
+                    [class.danger]="(editingPersonId === person.id) && formGroup.controls['phoneNumber'].invalid">
+
+                    <ng-container *ngIf="editingPersonId == person.id; else showPhoneNumber">
+                        <input type="text"
+                               class="text-right"
+                               formControlName="phoneNumber"
+                               placeholder="format: +9009000000">
+                    </ng-container>
+
+                    <ng-template #showPhoneNumber>
+                        {{person.phoneNumber}}
+                    </ng-template>
+                </td>
+
+                <!-- Actions column -->
+                <td class="text-center">
+
+                    <button class="button rounted warning"
+                            [disabled]="isSaving && (editingPersonId === person.id) || editingPersonId"
+                            (click)="edit(person.id)">edit</button>
+                    <button [disabled]="isSaving || (editingPersonId !== person.id) ||formGroup.invalid"
+                            class="button rounted primary"
+                            (click)="save()">save</button>
+                    <button class="button rounded cencel"
+                            [disabled]="isSaving|| (editingPersonId !== person.id)"
+                            (click)="stopEditing()">cencel</button>
+                    <button class="button rounted danger"
+                            (click)="delete(person.id)">delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

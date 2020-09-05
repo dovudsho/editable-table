@@ -1,0 +1,68 @@
+.table__container {
+    overflow-x: auto
+}
+
+table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+table tr:nth-child(even){background-color: #f2f2f2;}
+  
+table tr:hover {background-color: #ddd;}
+  
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #964af8;
+    color: white;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    min-width: 50px;
+    cursor: pointer;
+}
+
+.button:disabled {
+    border: 1px solid rgb(170, 170, 170);
+    color: rgb(170, 170, 170);
+    background-color: rgb(230, 228, 228);
+}
+
+.rounted {
+    border-radius: 5px;
+}
+
+.warning {
+    color: black;
+    background-color: #FFC107;
+}
+
+.danger {
+    background-color: #B32B38;
+}
+
+.primary {
+    background-color: #46b188;
+}
+
+.cencel {
+    color: black;
+    background-color: #fff;
+}

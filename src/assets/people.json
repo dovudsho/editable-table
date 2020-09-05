@@ -1,0 +1,11 @@
+[
+    {
+        "id": 1,
+        "FIO": "Alex Alex Alex",
+        "gender": "M",
+        "dateOfBirth": "25.01.1997",
+        "married": true,
+        "university": "Boston",
+        "phoneNumber": "+992929823035"
+    }
+]
