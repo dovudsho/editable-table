@@ -112,16 +112,18 @@
                 <td class="text-center">
 
                     <button class="button rounted warning"
-                            [disabled]="isSaving && (editingPersonId === person.id) || editingPersonId"
+                            [disabled]="savingPerson && (editingPersonId === person.id) || editingPersonId"
                             (click)="edit(person.id)">edit</button>
-                    <button [disabled]="isSaving || (editingPersonId !== person.id) ||formGroup.invalid"
+                    <button [disabled]="savingPerson || (editingPersonId !== person.id) ||formGroup.invalid"
                             class="button rounted primary"
                             (click)="save()">save</button>
                     <button class="button rounded cencel"
-                            [disabled]="isSaving|| (editingPersonId !== person.id)"
+                            [disabled]="savingPerson|| (editingPersonId !== person.id)"
                             (click)="stopEditing()">cencel</button>
                     <button class="button rounted danger"
                             (click)="delete(person.id)">delete</button>
+                    <button class="button rounted danger"
+                            (click)="add()">add</button>
                 </td>
             </tr>
         </tbody>

@@ -16,8 +16,9 @@ export class PeopleComponent implements OnInit {
     people$: Observable<Person[]>;
     university$: Observable<string[]>;
 
-    editingPersonId: number;
-    isSaving = false;
+    editingPersonId: string;
+    addingPerson = false;
+    savingPerson = false;
 
     formGroup: FormGroup;
 
@@ -37,12 +38,12 @@ export class PeopleComponent implements OnInit {
         this.createPersonFormGroup();
     }
 
-    delete(id: number): void {
+    delete(id: string): void {
         this.people$ = this.peopleService.delete(id);
         this.stopEditing();
     }
 
-    edit(id: number): void {
+    edit(id: string): void {
         this.editingPersonId = id;
         const editingPerson = this.peopleService.findOne(id);
         this.formGroup.patchValue(editingPerson);
@@ -50,17 +51,33 @@ export class PeopleComponent implements OnInit {
 
     save(): void {
         of(this.formGroup.getRawValue()).pipe(
-            tap(() => this.isSaving = true),
+            tap(() => this.savingPerson = true),
             delay(2000)
         ).subscribe((updatedData: Person) => {
             this.people$ = this.peopleService.update(this.editingPersonId, updatedData);
+            this.stopAdding();
             this.stopEditing();
-            this.isSaving = false;
+            this.savingPerson = false;
         });
     }
 
+    add() {
+        this.editingPersonId = this.peopleService.add();
+        const person = this.peopleService.findOne(this.editingPersonId);
+        this.formGroup.patchValue(person);
+        this.addingPerson = true;
+    }
+
     stopEditing() {
+        if (this.addingPerson) {
+            this.people$ = this.peopleService.delete(this.editingPersonId);
+            this.stopAdding();
+        }
         this.editingPersonId = null;
+    }
+
+    private stopAdding() {
+        this.addingPerson = false;
     }
 
     private loadData(): void {

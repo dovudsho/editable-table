@@ -1,6 +1,6 @@
 export class Person {
     constructor(
-        public id: number,
+        public id: string,
         public FIO: string,
         public gender: string,
         public dateOfBirth: Date,
