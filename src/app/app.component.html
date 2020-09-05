@@ -1,6 +1,22 @@
-<h1>Google Job</h1>
+<div class="sidebar">
+    <ul class="list">
+        <li uiSref="home"
+            class="list-item pointer">
+            <img src="assets/home.png"
+                 class="menu-icon"
+                 alt="home">
+            <a>Home</a>
+        </li>
+        <li uiSref="people"
+            class="list-item pointer">
+            <img src="assets/people.png"
+                 class="menu-icon"
+                 alt="people">
+            <a>People</a>
+        </li>
+    </ul>
+</div>
 
-<a uiSref="people">People Page</a>
-<a uiSref="second-page">Second Page</a>
-
-<ui-view></ui-view>
+<div class="content">
+    <ui-view></ui-view>
+</div>

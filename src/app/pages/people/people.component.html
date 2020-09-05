@@ -1,5 +1,8 @@
+<h1 class="text-center">Таблица - People</h1>
+
 <div class="table__container">
-    <table [formGroup]="formGroup">
+    <table class=table
+           [formGroup]="formGroup">
         <thead>
             <th *ngFor="let tableHead of tableHeads">{{tableHead | uppercase}}</th>
         </thead>
@@ -10,7 +13,7 @@
                 <td class="text-right">{{idx + 1}}</td>
 
                 <!-- FIO column -->
-                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['FIO'].invalid">
+                <td [class.invalid]="(editingPersonId === person.id) && formGroup.controls['FIO'].invalid">
 
                     <ng-container *ngIf="(editingPersonId === person.id); else showFIO">
                         <input type="text"
@@ -23,7 +26,7 @@
                 </td>
 
                 <!-- Gender column -->
-                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['gender'].invalid">
+                <td [class.invalid]="(editingPersonId === person.id) && formGroup.controls['gender'].invalid">
 
                     <ng-container *ngIf="editingPersonId == person.id; else showGender">
                         <label>
@@ -48,7 +51,7 @@
 
                 <!-- DateOfBirth column -->
                 <td class="text-center"
-                    [class.danger]="(editingPersonId === person.id) && formGroup.controls['dateOfBirth'].invalid">
+                    [class.invalid]="(editingPersonId === person.id) && formGroup.controls['dateOfBirth'].invalid">
 
                     <ng-container *ngIf="editingPersonId == person.id; else showDateOfBirth">
                         <input type="date"
@@ -78,7 +81,7 @@
                 </td>
 
                 <!-- University column -->
-                <td [class.danger]="(editingPersonId === person.id) && formGroup.controls['university'].invalid">
+                <td [class.invalid]="(editingPersonId === person.id) && formGroup.controls['university'].invalid">
 
                     <ng-container *ngIf="editingPersonId == person.id; else showUniversity">
                         <select formControlName="university">
@@ -94,7 +97,7 @@
 
                 <!-- PhoneNumber column -->
                 <td class="text-right"
-                    [class.danger]="(editingPersonId === person.id) && formGroup.controls['phoneNumber'].invalid">
+                    [class.invalid]="(editingPersonId === person.id) && formGroup.controls['phoneNumber'].invalid">
 
                     <ng-container *ngIf="editingPersonId == person.id; else showPhoneNumber">
                         <input type="text"
@@ -110,19 +113,18 @@
 
                 <!-- Actions column -->
                 <td class="text-center">
-
-                    <button class="button rounted warning"
+                    <button class="btn btn-warning rounted pointer"
                             [disabled]="savingPerson && (editingPersonId === person.id) || editingPersonId"
                             (click)="edit(person.id)">edit</button>
                     <button [disabled]="savingPerson || (editingPersonId !== person.id) ||formGroup.invalid"
-                            class="button rounted primary"
+                            class="btn btn-primary rounted pointer"
                             (click)="save()">save</button>
-                    <button class="button rounded cencel"
+                    <button class="btn btn-white rounded pointer"
                             [disabled]="savingPerson|| (editingPersonId !== person.id)"
                             (click)="stopEditing()">cencel</button>
-                    <button class="button rounted danger"
+                    <button class="btn btn-danger rounted pointer"
                             (click)="delete(person.id)">delete</button>
-                    <button class="button rounted danger"
+                    <button class="btn btn-success rounted pointer"
                             (click)="add()">add</button>
                 </td>
             </tr>

@@ -40,6 +40,7 @@ export class PeopleComponent implements OnInit {
 
     delete(id: string): void {
         this.people$ = this.peopleService.delete(id);
+        this.stopAdding();
         this.stopEditing();
     }
 
@@ -62,10 +63,12 @@ export class PeopleComponent implements OnInit {
     }
 
     add() {
-        this.editingPersonId = this.peopleService.add();
-        const person = this.peopleService.findOne(this.editingPersonId);
-        this.formGroup.patchValue(person);
-        this.addingPerson = true;
+        if (!this.addingPerson) {
+            this.editingPersonId = this.peopleService.add();
+            const person = this.peopleService.findOne(this.editingPersonId);
+            this.formGroup.patchValue(person);
+            this.addingPerson = true;
+        }
     }
 
     stopEditing() {

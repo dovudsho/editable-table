@@ -1,4 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.table__container {
+    overflow-x: auto
+}
+
+.table {
+    font-family: sans-serif;
+    border-collapse: collapse;
+    font-size: 12px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.table td, .table th {
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+  
+.table tr:nth-child(even){background-color: #f2f2f2;}
+  
+.table tr:hover {background-color: #ddd;}
+  
+.table th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #385e0e;
+    color: white;
+}
+
 .text-center {
     text-align: center;
 }
@@ -11,39 +45,19 @@
     width: 100%;
 }
 
-.table__container {
-    overflow-x: auto
+.rounted {
+    border-radius: 5px;
 }
 
-table {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    overflow-y: scroll;
+.pointer {
+    cursor: pointer;
 }
 
-table td, table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-  
-table tr:nth-child(even){background-color: #f2f2f2;}
-  
-table tr:hover {background-color: #ddd;}
-  
-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: center;
-    background-color: #964af8;
-    color: white;
+.invalid {
+    background-color: rgb(247, 157, 157);
 }
 
-table th:last-child {
-    width: 170px;
-}
-
-.button {
+.btn {
     border: none;
     color: white;
     padding: 5px;
@@ -53,30 +67,32 @@ table th:last-child {
     font-size: 14px;
     margin: 4px 2px;
     min-width: 50px;
-    cursor: pointer;
 }
 
-.button:disabled {
+.btn:disabled {
     border: 1px solid rgb(170, 170, 170);
     color: rgb(170, 170, 170);
     background-color: rgb(230, 228, 228);
 }
 
-.rounted {
-    border-radius: 5px;
-}
-
-.warning {
+.btn-warning {
     color: black;
     background-color: #FFC107;
 }
 
-.danger {
-    color: wheat;
-    background-color: #DC3545;
+.btn-danger {
+    background-color: #B32B38;
 }
 
-.success {
-    color: white;
+.btn-primary {
     background-color: #46b188;
+}
+
+.btn-success {
+    background-color: green;
+}
+
+.btn-white {
+    color: black;
+    background-color: #fff;
 }
