@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
@@ -96,7 +96,7 @@ export class PeopleComponent implements OnInit {
             dateOfBirth: [null, Validators.required],
             married: [null, Validators.required],
             university: [null, Validators.required],
-            phoneNumber: ['', [Validators.pattern(/^\+\d+$/), Validators.required]]
+            phoneNumber: ['', [Validators.pattern(/^\+\d+$/), Validators.minLength(5), Validators.required]]
         });
     }
 }
