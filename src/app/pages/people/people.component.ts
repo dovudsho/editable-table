@@ -75,8 +75,8 @@ export class PeopleComponent implements OnInit {
         this.editingPersonId = null;
     }
 
-    trackByFn(index, item: Person): string {
-        return item.id;
+    isEditingPerson(id: string): boolean {
+        return this.editingPersonId === id ? true : false;
     }
 
     private stopAdding() {
