@@ -7,14 +7,12 @@ import { AppComponent } from './app.component';
 import { PeopleComponent } from './pages/people/people.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TrackByPropertyPipe } from './core/pipes/track-by-property.pipe';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        PeopleComponent,
-        TrackByPropertyPipe
+        PeopleComponent
     ],
     imports: [
         BrowserModule,

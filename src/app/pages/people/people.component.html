@@ -15,7 +15,7 @@
         </thead>
 
         <tbody>
-            <tr *ngFor="let person of people$ | async; index as idx; trackBy: (person?.id | trackByProperty)">
+            <tr *ngFor="let person of people$ | async; index as idx; trackBy: trackByFn">
 
                 <!-- Id column -->
                 <td class="text-right">{{idx + 1}}</td>

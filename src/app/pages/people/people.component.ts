@@ -79,6 +79,10 @@ export class PeopleComponent implements OnInit {
         return this.editingPersonId === id ? true : false;
     }
 
+    trackByFn(id: number, item: Person) {
+        return item.id;
+    }
+
     private stopAdding() {
         this.addingPerson = false;
     }
