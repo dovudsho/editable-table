@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
@@ -21,10 +21,6 @@ export class PeopleComponent implements OnInit {
     savingPerson = false;
 
     formGroup: FormGroup;
-
-    get tableHeads(): Array<string> {
-        return ['№', 'ФИО', 'пол', 'дата рождения', 'В браке', 'ВУЗ', 'Номер телефона', 'Действия'];
-    }
 
     constructor(
         private fb: FormBuilder,
@@ -77,6 +73,10 @@ export class PeopleComponent implements OnInit {
             this.stopAdding();
         }
         this.editingPersonId = null;
+    }
+
+    trackByFn(index, item: Person): string {
+        return item.id;
     }
 
     private stopAdding() {
